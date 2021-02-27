@@ -19,7 +19,7 @@ class CSP():
         # v is the set of allowable values in each domain that can be 
         # assigned to variable X. Here the allowable values are all of the 
         # colors defined by the input but this will change for each domain 
-        # as the algorithm attempts to solve teh coloring problem.
+        # as the algorithm attempts to solve the coloring problem.
         self.v = colors
         # D is a set of domains, one for each variable. Here they are the set
         # of colors that can be assigned to a node in the graph.
@@ -32,7 +32,7 @@ class CSP():
             self.D[iD] = list(range(1, self.v + 1))   
  
 def backtrackingSearch(csp):
-    # This is the top level call to the backtracking algorithm.
+    # This is the top-level call to the backtracking algorithm.
     assignment = [0]*len(csp.X)
     if backtrack(assignment, csp):
         print("Solution Found.")
@@ -80,7 +80,7 @@ def isConsistent(var, assignment, val, csp):
 
 def MRV(assignment, csp):
     # This is the minimum-remaining-values (MRV) heuristic. This function 
-    # chooses the variable with the fewest "legal " values as teh next variable
+    # chooses the variable with the fewest "legal " values as the next variable
     # in the search. By doing so, it picks the variable that is most likely to
     # cause a failure, avoiding pointless searches through other variables.
     
@@ -94,20 +94,20 @@ def MRV(assignment, csp):
         for i in range(len(assignment)):
             if assignment[i] == 0:
                 possibleNode = csp.X[i]
-                possibleColors = csp.D[i]
-                if len(possibleColors) < len(maxAllowableVals):
-                    maxAllowableVals = possibleColors
-                    Xi = possibleNode
+                possibleVals = csp.D[i]
+                if len(possibleVals) < len(maxAllowableVals):
+                    maxAllowableVals = possibleVals
+                    var = possibleNode
     else:
         # If zero values have been assigned, use the first variable 
         # the starting point. 
-        Xi = csp.X[0]
-    return Xi    
+        var = csp.X[0]
+    return var    
 
 def MAC(var, assignment, csp):
     # This is the Maintaining Arc Consistency (MAC) algorithm. This detects
     # inconsistencies using the arc-consistency (AC-3) algorithm to check the 
-    # arcs (Xj, Xi) for unnasigned variables Xj that are neighbors of Xi. This
+    # arcs (Xj, Xi) for unassigned variables Xj that are neighbors of Xi. This
     # is a advanced form of forward checking that helps the MRV heuristic 
     # operate even more efficiently.
     
