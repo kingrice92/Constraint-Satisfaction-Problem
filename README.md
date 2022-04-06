@@ -1,5 +1,5 @@
 # CSCI6511_Project2
-Repository for search algorithm created for project 2 of CSCI 6511.
+Repository for search algorithm created for project 2 of CSCI 6511 at GW in Spring 2021.
 
 In order to test the algorithm, navigate to the directory where the repository was downloaded and enter the following:
 
